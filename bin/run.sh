@@ -1,8 +1,8 @@
 #!/bin/bash
 # Ensure we fail the job if any steps fail
-set -e -o pipefail
+#set -e -o pipefail
 
-#. $(dirname "$0")/env.sh
+. $(dirname "$0")/env.sh
 
 option="${1}"
 
@@ -104,6 +104,8 @@ echo "[INFO] Init postman test data ."
 VOLUME_CONTAINER=$(docker-compose ps -q volume)
 VOLUME_CONTAINER=`echo ${VOLUME_CONTAINER} | cut -b 1-12`
 
+echo $(dirname "$0")/postman-test/
+echo "********"
 docker cp $(dirname "$0")/postman-test/. "${VOLUME_CONTAINER}":/etc/newman
 
 

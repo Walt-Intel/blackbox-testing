@@ -17,15 +17,15 @@ fi
 
 echo "Info: Initiating Command Test."
 
-echo "[info] ---------- use docker-compose run newman ----------"
+echo "[info] ---------- run newman not the docker version the CLI version ----------"
 
-docker-compose run --rm postman run ${COLLECTION_PATH} \
+newman run ${COLLECTION_PATH} \
     --folder="device" --iteration-data="data/coreCommandData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
-docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="device_error_4xx" --iteration-data="data/coreCommandData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
+#newman run ${COLLECTION_PATH} \
+#    --folder="device_error_4xx" --iteration-data="data/coreCommandData.json" --environment=${ENV_PATH} \
+#    --reporters="junit,cli"
 
 #docker run --rm -v ~/${TEST_DIR}/postman-test/:/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run "${COLLECTION_PATH}" \
 #    --folder="device" --iteration-data="data/coreCommandData.json" --environment="${ENV_PATH}" \
